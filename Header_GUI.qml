@@ -1,6 +1,7 @@
 import QtQuick
-
+import QtQuick.Controls
 Rectangle {
+    property alias option: tool_button
         id: title_prj
         width: parent.width
         height: 70
@@ -8,6 +9,14 @@ Rectangle {
             width: 2
             color: "Black"
         }
+        ToolButton {
+            id: tool_button
+            width: 50
+            height: 50
+            anchors.verticalCenter: parent.verticalCenter
+            icon.source: "file:///home/namubuntu/Desktop/Light_System/drawer.png"
+        }
+
         Row {
             height: parent.height
             width: parent.width / 3

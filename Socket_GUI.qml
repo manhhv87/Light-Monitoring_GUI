@@ -24,7 +24,7 @@ Item {
             height: 50
             placeholderText: "IP Address"
             anchors.horizontalCenter: parent.horizontalCenter
-            text: "192.168.1.217"
+            text: "192.168.1.162"
         }
         TextField {
             id: port
@@ -32,7 +32,7 @@ Item {
             height: 50
             placeholderText: "Port number"
             anchors.horizontalCenter: parent.horizontalCenter
-            text: "8080"
+            text: "8081"
         }
         Button {
             id: connect_socket

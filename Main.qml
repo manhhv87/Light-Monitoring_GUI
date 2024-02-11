@@ -8,7 +8,13 @@ ApplicationWindow {
     height: screen.height * 0.8
     visible: true
     title: qsTr("Light Monitoring System")
-    header: Header_GUI {}
+    header: Header_GUI {
+        option.onClicked: {
+            user_option.open()
+        }
+    }
+    Drawer_Custom {id: user_option}
+
     background: Image {
         anchors.fill: parent
         source: "file://home/namubuntu/Desktop/Light_System/Lora.png"
@@ -62,7 +68,7 @@ ApplicationWindow {
                     height: parent.height
                     text: "Add Device"
                     onClicked: {
-                        add_device(entry_id.text)
+                        Backend.request_add_device(entry_id.text)
                         entry_id.text = ""
                     }
                 }
@@ -71,7 +77,7 @@ ApplicationWindow {
                     height: parent.height
                     text: "Remove Device"
                     onClicked: {
-                        remove_device(entry_id.text)
+                        Backend.request_remove_device(entry_id.text)
                         entry_id.text = ""
                     }
                 }
@@ -131,6 +137,12 @@ ApplicationWindow {
                 return -1;
             return 0;
         }
+        function onRemove_device(id)
+        {
+            if(remove_device(id.toString()))
+                return -1;
+            return 0;
+        }
 
         function onDataAvailable(id, sensor, power)
         {
@@ -148,6 +160,26 @@ ApplicationWindow {
                     wrap_device.itemAt(i).item.intensity.replace(wrap_device.itemAt(i).item.intensity.count -1, 9, sensor);
                     break;
                 }
+            }
+        }
+        function onBusyChanged(status)
+        {
+            loading.running = status
+        }
+    }
+    BusyIndicator {
+        id: loading
+        width: 200
+        height: 200
+        anchors.centerIn: parent
+        running: false
+        visible: running
+        Text {
+            text: qsTr("Please wait...!")
+            anchors.centerIn: parent
+            font {
+                pointSize: 20
+                bold: true
             }
         }
     }
