@@ -4,8 +4,8 @@ import QtCharts
 import QtQuick.Layouts
 
 ApplicationWindow {
-    width: screen.width * 0.8
-    height: screen.height * 0.8
+    width: screen.width //* 0.8
+    height: screen.height //* 0.8
     visible: true
     title: qsTr("Light Monitoring System")
     header: Header_GUI {
@@ -26,7 +26,6 @@ ApplicationWindow {
         anchors.fill: parent
         Column {
             anchors.fill: parent
-
             Flickable {
                 id: flickable
                 width: parent.width
@@ -43,7 +42,7 @@ ApplicationWindow {
                         model: chart_model
                         delegate: Loader {
                             sourceComponent: Node_GUI {
-                                width: flickable.width / 3
+                                width: flickable.width
                                 height: flickable.height
                                 node_id: model.node_id
                             }
@@ -68,8 +67,11 @@ ApplicationWindow {
                     height: parent.height
                     text: "Add Device"
                     onClicked: {
-                        Backend.request_add_device(entry_id.text)
-                        entry_id.text = ""
+                        if(entry_id.text !== "")
+                        {
+                            Backend.request_add_device(entry_id.text)
+                            entry_id.text = ""
+                        }
                     }
                 }
                 Button {
@@ -77,8 +79,11 @@ ApplicationWindow {
                     height: parent.height
                     text: "Remove Device"
                     onClicked: {
-                        Backend.request_remove_device(entry_id.text)
-                        entry_id.text = ""
+                        if(entry_id.text !== "")
+                        {
+                            Backend.request_remove_device(entry_id.text)
+                            entry_id.text = ""
+                        }
                     }
                 }
             }
@@ -106,7 +111,6 @@ ApplicationWindow {
             }
         }
         chart_model.append({ node_id: new_id })
-        console.log("Add Device ID "+new_id+" Successfully")
         return 0;
     }
     function remove_device(device_id)
@@ -121,7 +125,6 @@ ApplicationWindow {
             if(chart_model.get(i).node_id === device_id)
             {
                 chart_model.remove(i)
-                console.log("Delete Device ID " + device_id + " Successfully!")
                 return 0;
             }
         }
@@ -137,6 +140,7 @@ ApplicationWindow {
                 return -1;
             return 0;
         }
+
         function onRemove_device(id)
         {
             if(remove_device(id.toString()))
@@ -144,24 +148,70 @@ ApplicationWindow {
             return 0;
         }
 
-        function onDataAvailable(id, sensor, power)
+        function onDataAvailable(id, sensor, illuminance, voltage, current)
         {
             for(var i = 0; i < chart_model.count; i++)
             {
                 if(chart_model.get(i).node_id === id.toString())
                 {
-                    for(var j = 0; j < wrap_device.itemAt(i).item.working_power.count - 1; j++)
+                    for(var j = 0; j < wrap_device.itemAt(i).item.illuminance.count - 1; j++)
                     {
-                        wrap_device.itemAt(i).item.working_power.replace(j, j, wrap_device.itemAt(i).item.working_power.at(j+1).y);
+                        wrap_device.itemAt(i).item.illuminance.replace(j, j, wrap_device.itemAt(i).item.illuminance.at(j+1).y);
                         wrap_device.itemAt(i).item.intensity.replace(j, j, wrap_device.itemAt(i).item.intensity.at(j+1).y);
+                        wrap_device.itemAt(i).item.sourceVoltage.replace(j, j, wrap_device.itemAt(i).item.sourceVoltage.at(j+1).y);
+                        wrap_device.itemAt(i).item.sourceCurrent.replace(j, j, wrap_device.itemAt(i).item.sourceCurrent.at(j+1).y);
                         console.log("Replace "+j)
                     }
-                    wrap_device.itemAt(i).item.working_power.replace(wrap_device.itemAt(i).item.working_power.count -1, 9,  power);
+                    wrap_device.itemAt(i).item.illuminance.replace(wrap_device.itemAt(i).item.illuminance.count -1, 9,  illuminance);
                     wrap_device.itemAt(i).item.intensity.replace(wrap_device.itemAt(i).item.intensity.count -1, 9, sensor);
+                    wrap_device.itemAt(i).item.sourceVoltage.replace(wrap_device.itemAt(i).item.sourceVoltage.count -1, 9, voltage);
+                    wrap_device.itemAt(i).item.sourceCurrent.replace(wrap_device.itemAt(i).item.sourceCurrent.count -1, 9, current);
                     break;
                 }
             }
         }
+
+        function onStatusChanged(id, status)
+        {
+            for(var i = 0; i < chart_model.count; i++)
+            {
+                if(chart_model.get(i).node_id === id.toString())
+                {
+                    if(status === true)
+                    {
+                        wrap_device.itemAt(i).item.color_s = "Green";
+                        wrap_device.itemAt(i).item.connect_s = "Stable Connection";
+                    }
+                    else
+                    {
+                        wrap_device.itemAt(i).item.color_s = "Red";
+                        wrap_device.itemAt(i).item.connect_s = "Disonnected";
+                    }
+
+                    break;
+                }
+            }
+        }
+
+        function onModeChanged(id, currentMode)
+        {
+            for(var i = 0; i < chart_model.count; i++)
+            {
+                if(chart_model.get(i).node_id === id.toString())
+                {
+                    if(currentMode)
+                    {
+                        wrap_device.itemAt(i).item.getMode = "AUTO"
+                    }
+                    else
+                    {
+                        wrap_device.itemAt(i).item.getMode = "MANUAL"
+                    }
+                    break;
+                }
+            }
+        }
+
         function onBusyChanged(status)
         {
             loading.running = status

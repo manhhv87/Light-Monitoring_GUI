@@ -32,7 +32,7 @@ Item {
             height: 50
             placeholderText: "Port number"
             anchors.horizontalCenter: parent.horizontalCenter
-            text: "8081"
+            text: "8080"
         }
         Button {
             id: connect_socket

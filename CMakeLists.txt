@@ -22,6 +22,7 @@ qt_add_qml_module(appLight_System
     SOURCES backend.h backend.cpp
     QML_FILES
     QML_FILES Drawer_Custom.qml
+    QML_FILES
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
