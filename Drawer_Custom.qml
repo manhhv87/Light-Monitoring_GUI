@@ -67,6 +67,7 @@ Drawer {
                     width: (parent.width - (2*foo.width) - to.width - 20)/4
                     height: parent.height
                     placeholderText: "0 - 24"
+                    text: "6"
                 }
                 Text {
                     id: foo
@@ -81,6 +82,7 @@ Drawer {
                     width: (parent.width - (2*foo.width) - to.width - 20)/4
                     height: parent.height
                     placeholderText: "0 - 60"
+                    text: "0"
                 }
                 Text {
                     id: to
@@ -95,6 +97,7 @@ Drawer {
                     width: (parent.width - (2*foo.width) - to.width - 20)/4
                     height: parent.height
                     placeholderText: "0 - 24"
+                    text: "17"
                 }
                 Text {
                     anchors.verticalCenter: parent.verticalCenter
@@ -108,6 +111,7 @@ Drawer {
                     width: (parent.width - (2*foo.width) - to.width - 20)/4
                     height: parent.height
                     placeholderText: "0 - 60"
+                    text: "59"
                 }
             }
 
@@ -127,6 +131,7 @@ Drawer {
                     width: (parent.width - (2*foo.width) - to.width - 20)/4
                     height: parent.height
                     placeholderText: "0 - 24"
+                    text: "18"
                 }
                 Text {
                     anchors.verticalCenter: parent.verticalCenter
@@ -140,6 +145,7 @@ Drawer {
                     width: (parent.width - (2*foo.width) - to.width - 20)/4
                     height: parent.height
                     placeholderText: "0 - 60"
+                    text: "0"
                 }
                 Text {
                     anchors.verticalCenter: parent.verticalCenter
@@ -153,6 +159,7 @@ Drawer {
                     width: (parent.width - (2*foo.width) - to.width - 20)/4
                     height: parent.height
                     placeholderText: "0 - 24"
+                    text: "18"
                 }
                 Text {
                     anchors.verticalCenter: parent.verticalCenter
@@ -166,6 +173,7 @@ Drawer {
                     width: (parent.width - (2*foo.width) - to.width - 20)/4
                     height: parent.height
                     placeholderText: "0 - 60"
+                    text: "59"
                 }
             }
 
@@ -185,6 +193,7 @@ Drawer {
                     width: (parent.width - (2*foo.width) - to.width - 20)/4
                     height: parent.height
                     placeholderText: "0 - 24"
+                    text: "19"
                 }
                 Text {
                     anchors.verticalCenter: parent.verticalCenter
@@ -198,6 +207,7 @@ Drawer {
                     width: (parent.width - (2*foo.width) - to.width - 20)/4
                     height: parent.height
                     placeholderText: "0 - 60"
+                    text: "0"
                 }
                 Text {
                     anchors.verticalCenter: parent.verticalCenter
@@ -211,6 +221,7 @@ Drawer {
                     width: (parent.width - (2*foo.width) - to.width - 20)/4
                     height: parent.height
                     placeholderText: "0 - 24"
+                    text: "21"
                 }
                 Text {
                     anchors.verticalCenter: parent.verticalCenter
@@ -224,6 +235,7 @@ Drawer {
                     width: (parent.width - (2*foo.width) - to.width - 20)/4
                     height: parent.height
                     placeholderText: "0 - 60"
+                    text: "59"
                 }
             }
 
@@ -243,6 +255,7 @@ Drawer {
                     width: (parent.width - (2*foo.width) - to.width - 20)/4
                     height: parent.height
                     placeholderText: "0 - 24"
+                    text: "22"
                 }
                 Text {
                     anchors.verticalCenter: parent.verticalCenter
@@ -256,6 +269,7 @@ Drawer {
                     width: (parent.width - (2*foo.width) - to.width - 20)/4
                     height: parent.height
                     placeholderText: "0 - 60"
+                    text: "0"
                 }
                 Text {
                     anchors.verticalCenter: parent.verticalCenter
@@ -269,6 +283,7 @@ Drawer {
                     width: (parent.width - (2*foo.width) - to.width - 20)/4
                     height: parent.height
                     placeholderText: "0 - 24"
+                    text: "5"
                 }
                 Text {
                     anchors.verticalCenter: parent.verticalCenter
@@ -282,6 +297,7 @@ Drawer {
                     width: (parent.width - (2*foo.width) - to.width - 20)/4
                     height: parent.height
                     placeholderText: "0 - 60"
+                    text: "59"
                 }
             }
             Rectangle {

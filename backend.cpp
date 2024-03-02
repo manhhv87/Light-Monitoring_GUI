@@ -27,7 +27,7 @@ void Backend::socket_request_connect(const QString &server_ip, QString server_po
     });
     socket->connectToHost(server_ip, port_no);
     qDebug()<<"Connect function called!";
-    socket->write(connectt.toUtf8());
+    //socket->write(connectt.toUtf8());
     emit busyChanged(true);
 }
 
@@ -67,7 +67,7 @@ void Backend::read_socket(void)
             emit statusChanged(stringlist[1].toInt(), false);
         }
     }
-    //qDebug()<<rx_buffer;
+    qDebug()<<rx_buffer;
 }
 
 void Backend::send_socket(QString tx_buffer)
